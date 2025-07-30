@@ -38,6 +38,10 @@ public:
 	// 싱글톤 접근 함수
 	static Engine& Get();
 
+	// 화면 가로/세로 크기 반환 함수
+	int Width() const;
+	int Height() const;
+
 private:
 	void BeginPlay();
 	void Tick(float deltaTime = 0.0f);

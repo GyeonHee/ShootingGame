@@ -104,6 +104,12 @@ void Engine::Run()
 
 			// 현재 프레임의 입력을 기록
 			input.SavePreviousKeyStates();
+
+			// 이전 프레임에 추가 및 삭제 요청된 액터 처리
+			if (mainLevel)
+			{
+				mainLevel->ProcessAddAndDestroyActors();
+			}
 		}		
 	}
 
@@ -137,6 +143,16 @@ void Engine::Quit()
 Engine& Engine::Get()
 {
 	return *instance;
+}
+
+int Engine::Width() const
+{
+	return settings.width;
+}
+
+int Engine::Height() const
+{
+	return settings.height;
 }
 
 void Engine::BeginPlay()

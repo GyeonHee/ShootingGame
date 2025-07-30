@@ -1,6 +1,7 @@
 #include "Actor.h"
 #include "Utils/Utils.h"
 #include "Engine.h"
+#include "Level/Level.h"
 
 #include <Windows.h>
 #include <iostream>
@@ -83,11 +84,6 @@ Vector2 Actor::Position() const
 	return position;
 }
 
-int Actor::Width() const
-{
-	return width;
-}
-
 void Actor::SetSortingOrder(unsigned int sortingOrder)
 {
 	this->sortingOrder = sortingOrder;
@@ -107,6 +103,8 @@ void Actor::Destroy()
 {
 	// 삭제 요청 되었다고 설정
 	isExpired = true;
+
+	owner->DestroyActor(this);
 }
 
 void Actor::QuitGame()
