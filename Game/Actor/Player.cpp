@@ -29,7 +29,7 @@ void Player::Tick(float deltaTime)
 	}
 
 	// 미사일 발사
-	if (Input::Get().GetKey(VK_SPACE))
+	if (Input::Get().GetKeyDown(VK_SPACE))
 	{
 		// 발사
 		Fire();
