@@ -15,7 +15,7 @@ class Enemy : public Actor
 
 	RTTI_DECLARATIONS(Enemy, Actor)
 public:
-	Enemy(const char* image, int yPosition);
+	Enemy(const char* image = "<-=->", int yPosition= 5);
 
 	virtual void Tick(float deltaTime) override;
 private:
