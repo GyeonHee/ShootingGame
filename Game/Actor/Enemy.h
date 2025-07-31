@@ -35,9 +35,9 @@ private:
 
 	// 타이머 계산을 위한 변수
 
-	// 경과 시간 계산 변수
-	float elapsedTime = 0.0f;
+	//// 경과 시간 계산 변수
+	//float elapsedTime = 0.0f;
 
-	// 목표 시간 값
-	float targetTime = 0.0f;
+	//// 목표 시간 값
+	//float targetTime = 0.0f;
 };

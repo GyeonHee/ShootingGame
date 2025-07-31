@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Level/Level.h"
+#include "Utils/Timer.h"
 
 /*
 *   게임 레벨의 책임

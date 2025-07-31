@@ -27,10 +27,8 @@ Enemy::Enemy(const char* image, int yPosition) : Actor(image)
 	position.x = static_cast<int>(xPosition);
 	position.y = yPosition;
 
-	timer.SetTargetTime(Utils::RandomFloat(1.0f, 3.0f));
-
 	// 발사 간격 시간 설정
-	targetTime = Utils::RandomFloat(1.0f, 3.0f);
+	timer.SetTargetTime(Utils::RandomFloat(1.0f, 3.0f));
 }
 
 void Enemy::Tick(float deltaTime)
