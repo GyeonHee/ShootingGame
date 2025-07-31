@@ -4,7 +4,7 @@
 #include <Windows.h>
 
 // 엔진 설정 구조체
-struct EngineSettings
+struct Engine_API EngineSettings
 {
 	// 콘솔 화면 가로 크기
 	int width = 0;

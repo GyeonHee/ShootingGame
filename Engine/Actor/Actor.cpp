@@ -111,6 +111,11 @@ Vector2 Actor::Position() const
 	return position;
 }
 
+int Actor::Width() const
+{
+	return width;
+}
+
 void Actor::SetSortingOrder(unsigned int sortingOrder)
 {
 	this->sortingOrder = sortingOrder;
@@ -124,6 +129,38 @@ void Actor::SetOwner(Level* newOwner)
 Level* Actor::GetOwner()
 {
 	return owner;
+}
+
+bool Actor::TestIntersect(const Actor* const other)
+{
+	// AABB(Axis Aligned Bounding Box).
+	// Note: 현재 액터 구조 상 세로는 크기가 없음(크기가 1).
+	//       따라서 가로의 최소/최대 위치만 더 고려하면 됨.
+
+	// 이 액터의 x 좌표 정보.
+	int xMin = position.x;
+	int xMax = position.x + width - 1;
+
+	// 충돌 비교할 다른 액터의 x 좌표 정보.
+	int otherXMin = other->position.x;
+	int otherXMax = other->position.x + other->width - 1;
+
+	// 안겹치는 조건 확인.
+
+	// 다른 액터의 왼쪽 좌표가 내 오른쪽 좌표보다 더 오른쪽에 있으면 안겹침.
+	if (otherXMin > xMax)
+	{
+		return false;
+	}
+
+	// 다른 액터의 오른쪽 좌표가 내 왼쪽 좌표보다 더 왼쪽에 있으면 안겹침.
+	if (otherXMax < xMin)
+	{
+		return false;
+	}
+
+	// y 좌표가 같은지 최종 확인.
+	return position.y == other->position.y;
 }
 
 void Actor::Destroy()
