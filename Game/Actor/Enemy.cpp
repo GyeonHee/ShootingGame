@@ -27,6 +27,8 @@ Enemy::Enemy(const char* image, int yPosition) : Actor(image)
 	position.x = static_cast<int>(xPosition);
 	position.y = yPosition;
 
+	timer.SetTargetTime(Utils::RandomFloat(1.0f, 3.0f));
+
 	// 발사 간격 시간 설정
 	targetTime = Utils::RandomFloat(1.0f, 3.0f);
 }
@@ -53,11 +55,9 @@ void Enemy::Tick(float deltaTime)
 	// 안 벗어났으면 위치 설정
 	SetPosition(Vector2((int)xPosition, position.y));
 
-	// 시간 잰 후에 탄약 발사 
-	elapsedTime += deltaTime;
-
-	// 발사 간격 시간만큼 경과했는지 확인
-	if (elapsedTime < targetTime)
+	// 시간 잰 후에 탄약 발사
+	timer.Tick(deltaTime);
+	if (!timer.IsTimeout())
 	{
 		return;
 	}
@@ -67,6 +67,6 @@ void Enemy::Tick(float deltaTime)
 	owner->AddActor(new EnemyBullet(Vector2(position.x + width / 2, position.y + 1), Utils::RandomFloat(10.0f, 20.0f)));
 
 	// 타이머 변수 정리
-	elapsedTime = 0.0f;
-	targetTime = Utils::RandomFloat(1.0f, 3.0f);
+	timer.Reset();
+	timer.SetTargetTime(Utils::RandomFloat(1.0f, 3.0f));
 }

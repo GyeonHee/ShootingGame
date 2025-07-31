@@ -2,6 +2,7 @@
 
 
 #include "Actor/Actor.h"
+#include "Utils/Timer.h"
 
 class Enemy : public Actor
 {
@@ -26,7 +27,11 @@ private:
 	// 속력을 고려한 이동 위치 계산을 위한 float 변수
 	float xPosition = 0.0f;
 
+	// 이동 빠르기
 	float moveSpeed = 5.0f;
+
+	// 타이머
+	Timer timer;
 
 	// 타이머 계산을 위한 변수
 
